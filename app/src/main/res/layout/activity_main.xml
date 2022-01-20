@@ -1,18 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/preto">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/txtResultado"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColor="@color/branco"
+        android:background="@color/preto"
+        android:layout_marginTop="150px"
+        android:layout_marginRight="13dp"
+        android:gravity="end"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-light"
+        android:textSize="80sp"
+        android:text="0"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="AC"
+            android:background="@drawable/circulo_cinza"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="+/-"
+            android:background="@drawable/circulo_cinza"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="%"
+            android:background="@drawable/circulo_cinza"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="/"
+            android:background="@drawable/circulo_laranja"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="7"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="8"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="9"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="X"
+            android:background="@drawable/circulo_laranja"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="4"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="5"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="6"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="+"
+            android:background="@drawable/circulo_laranja"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="1"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="2"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="3"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="-"
+            android:background="@drawable/circulo_laranja"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text="0"
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesPreto"
+            android:text=","
+            android:background="@drawable/circulo_preto"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            style="@style/BotoesCinza"
+            android:text="="
+            android:background="@drawable/circulo_laranja"/>
+
+    </LinearLayout>
+
+</LinearLayout>
