@@ -1,9 +1,14 @@
 package com.example.calculadoraiphone.ui.theme
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,7 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.calculadoraiphone.LancarToast
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun Botao(
@@ -42,37 +48,39 @@ fun Botao(
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Linha(
     caracteres: List<String>,
     coresFundo: List<Color> = listOf(PretaFusca, Laranja),
     coresTexto: List<Color> = listOf(Branca, Branca),
-    quatroBotoes: Boolean = true
+    quatroBotoes: Boolean = true,
+    eventos: List<() -> Unit>
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
-        val contexto = LocalContext.current
         Botao(
             texto = caracteres[0], corFundo = coresFundo[0], corTexto = coresTexto[0],
             largura = if (!quatroBotoes) 180 else 80,
             alinhamento = if (!quatroBotoes) TextAlign.Left else TextAlign.Center,
-            evento = { LancarToast(contexto = contexto, texto = caracteres[0]) }
+            evento = eventos[0]
         )
         Botao(
             texto = caracteres[1], corFundo = coresFundo[0], corTexto = coresTexto[0],
-            evento = { LancarToast(contexto = contexto, texto = caracteres[1]) }
-        )
-        Botao(
-            texto = caracteres[2], corFundo = coresFundo[0], corTexto = coresTexto[0],
-            evento = { LancarToast(contexto = contexto, texto = caracteres[2]) }
+            evento = eventos[1]
         )
         if (quatroBotoes)
             Botao(
-                texto = caracteres[3], corFundo = coresFundo[1], corTexto = coresTexto[1],
-                evento = { LancarToast(contexto = contexto, texto = caracteres[3]) }
+                texto = caracteres[2], corFundo = coresFundo[0], corTexto = coresTexto[0],
+                evento = eventos[2]
             )
+
+        Botao(
+            texto = caracteres[3], corFundo = coresFundo[1], corTexto = coresTexto[1],
+            evento = eventos[3]
+        )
     }
 }
