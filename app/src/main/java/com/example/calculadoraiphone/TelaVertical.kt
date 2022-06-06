@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.widget.Space
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.*
 import androidx.compose.animation.core.snap
 import androidx.compose.foundation.background
@@ -14,6 +16,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,11 +33,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class TelaVertical : ComponentActivity() {
-    @ExperimentalAnimationApi
+
+    private val viewModel by viewModels<ViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val configuracao = LocalConfiguration.current
+            /*val configuracao = LocalConfiguration.current
             when (configuracao.orientation) {
                 Configuration.ORIENTATION_LANDSCAPE -> {
                     Text(text = "Falta Desenhar a Tela Horizontal")
@@ -43,13 +48,41 @@ class TelaVertical : ComponentActivity() {
                 Configuration.ORIENTATION_PORTRAIT -> {
                     TelaVerticalUI()
                 }
-            }
+            }*/
+
+            telaDeTeste(viewModel = viewModel)
         }
     }
 }
 
-var numero1: Double = 0.0
-var operacao: Char? = null
+
+
+@Composable
+fun telaDeTeste(viewModel: ViewModel){
+    val numero2: String by viewModel.numero2.observeAsState("0")
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = viewModel.resultado.value!!, fontSize = 20.sp)
+
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(onClick = {
+            viewModel.onMudarNumero("44")
+
+        }) {
+            Text(text = "Texto")
+        }
+    }
+
+}
+
+
+
+
+val dto = Dto("0")
 
 @Composable
 fun TelaVerticalUI() {
@@ -110,9 +143,9 @@ fun TelaVerticalUI() {
                         numero = "$numero %"
                     },
                     {
-                        numero1 = numero.toDouble()
+                        dto.numero1 = numero
                         numeroEstado = true
-                        operacao = '/'
+                        dto.operacao = '/'
                     }
                 )
             )
@@ -143,9 +176,9 @@ fun TelaVerticalUI() {
                         numero = ValidarZero(numero, "9")
                     },
                     {
-                        numero1 = numero.toDouble()
+                        dto.numero1 = numero
+                        dto.operacao = 'x'
                         numeroEstado = true
-                        operacao = 'x'
                     }
                 )
             )
@@ -175,9 +208,9 @@ fun TelaVerticalUI() {
                         numero = ValidarZero(numero, "6")
                     },
                     {
-                        numero1 = numero.toDouble()
+                        dto.numero1 = numero
+                        dto.operacao = '-'
                         numeroEstado = true
-                        operacao = '-'
                     }
                 )
             )
@@ -207,9 +240,9 @@ fun TelaVerticalUI() {
                         numero = ValidarZero(numero, "3")
                     },
                     {
-                        numero1 = numero.toDouble()
+                        dto.numero1 = numero
+                        dto.operacao = '+'
                         numeroEstado = true
-                        operacao = '+'
                     }
                 )
             )
@@ -221,18 +254,14 @@ fun TelaVerticalUI() {
                     { numero = ValidarZero(numero, "0") },
                     { numero = if (!numero.contains(",")) "$numero," else numero },
                     {
-                        operacao.let {
+                        dto.operacao.let {
                             val resultado = Calcular(
                                 Dados(
-                                    numero1,
-                                    numero.toDouble(), it
+                                    dto.numero1.toDouble(),
+                                    numero.toDouble(),
+                                    it
                                 )
                             )
-
-                            Log.i("Numero 1", numero1.toString())
-                            Log.i("Numero 2", numero)
-                            Log.i("Numero Op", operacao.toString())
-                            Log.i("Numero Total", resultado.toString())
 
                             numero = VerificarDecimal(resultado)
                         }
@@ -249,8 +278,8 @@ fun TelaVerticalUI() {
     device = PIXEL_2
 )
 @Composable
-fun PrevizualizarLinha1() {
+fun previzualizarLinha1() {
     CalculadoraIPhoneTheme {
-        TelaVerticalUI()
+
     }
 }

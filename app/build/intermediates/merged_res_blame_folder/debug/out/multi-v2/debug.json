@@ -1296,6 +1296,23 @@
             "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/merged_res/debug/values_values.arsc.flat",
             "map": [
                 {
+                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/838c24d3b5fc856649bab55243bba64b/transformed/lifecycle-viewmodel-2.5.0-rc01/res/values/values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "49",
+                        "endOffsets": "100"
+                    },
+                    "to": {
+                        "startLines": "1517",
+                        "startColumns": "4",
+                        "startOffsets": "91973",
+                        "endColumns": "49",
+                        "endOffsets": "92018"
+                    }
+                },
+                {
                     "source": "/home/lito-bumba/.gradle/caches/transforms-3/b890365b79f9f81aee8aa23874d8571b/transformed/core-1.7.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,89,90,94,95,96,97,104,114,162,194,231",
@@ -1367,6 +1384,23 @@
                         "startOffsets": "91876",
                         "endColumns": "42",
                         "endOffsets": "91914"
+                    }
+                },
+                {
+                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/755e9761f879bc3c70787514e25732fe/transformed/savedstate-1.2.0-rc01/res/values/values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "53",
+                        "endOffsets": "104"
+                    },
+                    "to": {
+                        "startLines": "1516",
+                        "startColumns": "4",
+                        "startOffsets": "91919",
+                        "endColumns": "53",
+                        "endOffsets": "91968"
                     }
                 },
                 {
@@ -1477,40 +1511,6 @@
                         "startOffsets": "88524,88564,89752,89934,89989,91485,91539,91591,91640,91701",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "88559,88606,89790,89984,90031,91534,91586,91635,91696,91746"
-                    }
-                },
-                {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/29a72e3b6a95f117e1377ff1a266b9b1/transformed/lifecycle-viewmodel-2.3.1/res/values/values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "49",
-                        "endOffsets": "100"
-                    },
-                    "to": {
-                        "startLines": "1517",
-                        "startColumns": "4",
-                        "startOffsets": "91973",
-                        "endColumns": "49",
-                        "endOffsets": "92018"
-                    }
-                },
-                {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/431cc6ccbb4a1d92989f23e8cc70e53f/transformed/savedstate-1.1.0/res/values/values.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "53",
-                        "endOffsets": "104"
-                    },
-                    "to": {
-                        "startLines": "1516",
-                        "startColumns": "4",
-                        "startOffsets": "91919",
-                        "endColumns": "53",
-                        "endOffsets": "91968"
                     }
                 },
                 {

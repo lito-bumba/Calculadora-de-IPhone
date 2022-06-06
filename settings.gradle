@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "CryptoCurrencyApp"
+rootProject.name = "Calculadora de IPhone"
 include ':app'
