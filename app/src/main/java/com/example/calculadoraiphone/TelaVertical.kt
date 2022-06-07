@@ -1,16 +1,9 @@
 package com.example.calculadoraiphone
 
-import android.content.Context
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
-import android.widget.Space
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.animation.*
-import androidx.compose.animation.core.snap
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -19,9 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices.PIXEL_2
@@ -29,8 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calculadoraiphone.ui.theme.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 class TelaVertical : ComponentActivity() {
 
@@ -50,43 +38,55 @@ class TelaVertical : ComponentActivity() {
                 }
             }*/
 
-            telaDeTeste(viewModel = viewModel)
+            TelaVerticalUI(viewModel = viewModel)
         }
     }
 }
 
-
+var i = 0
 
 @Composable
-fun telaDeTeste(viewModel: ViewModel){
-    val numero2: String by viewModel.numero2.observeAsState("0")
+fun telaDeTeste(viewModel: ViewModel) {
+    val numero by viewModel.numeroTela.observeAsState("0")
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = viewModel.resultado.value!!, fontSize = 20.sp)
+        Text(text = numero, fontSize = 40.sp)
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(100.dp))
         Button(onClick = {
-            viewModel.onMudarNumero("44")
+            viewModel.mudarNumero("10")
+            viewModel.onMudarOperacao('*')
+            viewModel.mudarNumero("5")
+            viewModel.onCalcularOperacoesBasicas()
+        }) { Text(text = "Inicial") }
 
-        }) {
-            Text(text = "Texto")
+        Spacer(modifier = Modifier.height(100.dp))
+        Button(onClick = {
+            val op: List<Char> = listOf('-', '+', '*', '/')
+            viewModel.onMudarOperacao(op[i])
+            viewModel.onCalcularOperacoesBasicas()
+            if (i < 3) i++ else i = 0
+        }) { Text(text = "Mudar Operação") }
+
+        Spacer(modifier = Modifier.height(50.dp))
+        Row() {
+            Button(onClick = {
+                viewModel.onCalcularOperacoesBasicas()
+            }) { Text(text = "N 1") }
+            Spacer(modifier = Modifier.width(50.dp))
+            Button(onClick = {
+                viewModel.onCalcularOperacoesBasicas()
+            }) { Text(text = "N 2") }
         }
     }
-
 }
 
-
-
-
-val dto = Dto("0")
-
 @Composable
-fun TelaVerticalUI() {
-
+fun TelaVerticalUI(viewModel: ViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -94,8 +94,10 @@ fun TelaVerticalUI() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
     ) {
-        var numero by remember { mutableStateOf("0") }
-        var numeroEstado by remember { mutableStateOf(false) }
+
+        val numeroTela by viewModel.numeroTela.observeAsState("0")
+        val textoBotaoLimpar by viewModel.textoBotaoLimpar.observeAsState("AC")
+
         SelectionContainer(
             modifier = Modifier
                 .fillMaxHeight(0.18f)
@@ -103,7 +105,7 @@ fun TelaVerticalUI() {
                 .padding(end = 25.dp)
         ) {
             Text(
-                text = numero,
+                text = numeroTela,
                 fontSize = 100.sp,
                 fontFamily = FontFamily.Monospace,
                 textAlign = TextAlign.End,
@@ -120,97 +122,49 @@ fun TelaVerticalUI() {
                 .fillMaxHeight(0.92f)
         ) {
 
-            Linha( /*Linha 1*/
-                caracteres = listOf(
-                    if (numero.length <= 1 && numero.equals("0")) "AC" else "C",
-                    "+/-", "%", "/"
-                ),
-                coresFundo = listOf(Cinza, if (!numeroEstado) Laranja else Branca),
-                coresTexto = listOf(Preta, if (!numeroEstado) Branca else Laranja),
+            /*Linha 1*/
+            Linha(
+                caracteres = listOf(textoBotaoLimpar, "+/-", "%", "/"),
+                coresFundo = listOf(Cinza, Laranja),
+                coresTexto = listOf(Preta, Branca),
                 eventos = listOf(
+                    { viewModel.onLimparDados() },
+                    { },
+                    { },
                     {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = "0"
-                    }, { numero = "+$numero" },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = "$numero %"
-                    },
-                    {
-                        dto.numero1 = numero
-                        numeroEstado = true
-                        dto.operacao = '/'
+                        viewModel.onMudarOperacao('/')
+                        viewModel.onLimparNumeroTela()
                     }
                 )
             )
-            Linha( /*Linha 2*/
+
+            /*Linha 2*/
+            Linha(
                 caracteres = listOf("7", "8", "9", "x"),
-                coresFundo = listOf(PretaFusca, if (!numeroEstado) Laranja else Branca),
-                coresTexto = listOf(Branca, if (!numeroEstado) Branca else Laranja),
+                coresFundo = listOf(PretaFusca, Laranja),
+                coresTexto = listOf(Branca, Branca),
                 eventos = listOf(
+                    { viewModel.mudarNumero(validarZero(numeroTela, "7")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "8")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "9")) },
                     {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "7")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "8")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "9")
-                    },
-                    {
-                        dto.numero1 = numero
-                        dto.operacao = 'x'
-                        numeroEstado = true
+                        viewModel.onMudarOperacao('*')
+                        viewModel.onLimparNumeroTela()
                     }
                 )
             )
-            Linha( /*Linha 3*/
+
+            /*Linha 3*/
+            Linha(
                 caracteres = listOf("4", "5", "6", "-"),
                 coresFundo = listOf(PretaFusca, Laranja),
                 eventos = listOf(
+                    { viewModel.mudarNumero(validarZero(numeroTela, "4")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "5")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "6")) },
                     {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "4")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "5")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "6")
-                    },
-                    {
-                        dto.numero1 = numero
-                        dto.operacao = '-'
-                        numeroEstado = true
+                        viewModel.onMudarOperacao('-')
+                        viewModel.onLimparNumeroTela()
                     }
                 )
             )
@@ -218,31 +172,12 @@ fun TelaVerticalUI() {
                 caracteres = listOf("1", "2", "3", "+"),
                 coresFundo = listOf(PretaFusca, Laranja),
                 eventos = listOf(
+                    { viewModel.mudarNumero(validarZero(numeroTela, "1")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "2")) },
+                    { viewModel.mudarNumero(validarZero(numeroTela, "3")) },
                     {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "1")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "2")
-                    },
-                    {
-                        if (numeroEstado) {
-                            numero = ""
-                            numeroEstado = false
-                        }
-                        numero = ValidarZero(numero, "3")
-                    },
-                    {
-                        dto.numero1 = numero
-                        dto.operacao = '+'
-                        numeroEstado = true
+                        viewModel.onMudarOperacao('+')
+                        viewModel.onLimparNumeroTela()
                     }
                 )
             )
@@ -251,22 +186,14 @@ fun TelaVerticalUI() {
                 coresFundo = listOf(PretaFusca, Laranja),
                 quatroBotoes = false,
                 eventos = listOf(
-                    { numero = ValidarZero(numero, "0") },
-                    { numero = if (!numero.contains(",")) "$numero," else numero },
                     {
-                        dto.operacao.let {
-                            val resultado = Calcular(
-                                Dados(
-                                    dto.numero1.toDouble(),
-                                    numero.toDouble(),
-                                    it
-                                )
-                            )
-
-                            numero = VerificarDecimal(resultado)
-                        }
+                        if (numeroTela!! != "0")
+                            viewModel.mudarNumero(validarZero(numeroTela, "0")) },
+                    {
+                        //numero = if (!numero.contains(",")) "$numero," else numero
                     },
-                    { numero = "" }
+                    { },
+                    { viewModel.onCalcularOperacoesBasicas() }
                 )
             )
         }

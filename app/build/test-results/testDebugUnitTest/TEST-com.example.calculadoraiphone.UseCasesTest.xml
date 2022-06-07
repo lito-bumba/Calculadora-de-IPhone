@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.calculadoraiphone.UseCasesTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-05-30T01:37:31" hostname="ASUS-MySefer" time="0.03">
+<testsuite name="com.example.calculadoraiphone.UseCasesTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-06-06T20:46:28" hostname="ASUS-MySefer" time="0.028">
   <properties/>
-  <testcase name="Operações Básicas - Multiplicação" classname="com.example.calculadoraiphone.UseCasesTest" time="0.028"/>
+  <testcase name="Operações Básicas - Multiplicação" classname="com.example.calculadoraiphone.UseCasesTest" time="0.025"/>
   <testcase name="Operações Básicas - Subtração" classname="com.example.calculadoraiphone.UseCasesTest" time="0.0"/>
-  <testcase name="Validar Número, Virgula e Ponto" classname="com.example.calculadoraiphone.UseCasesTest" time="0.001"/>
+  <testcase name="Validar Número, Virgula e Ponto" classname="com.example.calculadoraiphone.UseCasesTest" time="0.0"/>
   <testcase name="Operações Básicas - Divisão" classname="com.example.calculadoraiphone.UseCasesTest" time="0.0"/>
   <testcase name="Porcentagem" classname="com.example.calculadoraiphone.UseCasesTest" time="0.0"/>
   <testcase name="Operações Básicas - Soma" classname="com.example.calculadoraiphone.UseCasesTest" time="0.0"/>

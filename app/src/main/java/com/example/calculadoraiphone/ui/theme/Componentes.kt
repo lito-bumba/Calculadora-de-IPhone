@@ -48,7 +48,6 @@ fun Botao(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Linha(
     caracteres: List<String>,

@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-ne/values-ne.xml",
+            "map": [
+                {
+                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/b890365b79f9f81aee8aa23874d8571b/transformed/core-1.7.0/res/values-ne/values-ne.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "965",
+                        "endColumns": "100",
+                        "endOffsets": "1061"
+                    }
+                },
+                {
+                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/13e62fa75486cfdded73648db5499079/transformed/ui-1.0.1/res/values-ne/values-ne.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,204,294,388,470,583,670,756,822,888,965,1033",
+                        "endColumns": "98,89,93,81,112,86,85,65,65,76,67,119",
+                        "endOffsets": "199,289,383,465,578,665,751,817,883,960,1028,1148"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,204,294,388,470,583,670,756,822,888,1066,1134",
+                        "endColumns": "98,89,93,81,112,86,85,65,65,76,67,119",
+                        "endOffsets": "199,289,383,465,578,665,751,817,883,960,1129,1249"
+                    }
+                }
+            ]
+        }
+    ]
+}
