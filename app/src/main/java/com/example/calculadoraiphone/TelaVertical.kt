@@ -188,9 +188,13 @@ fun TelaVerticalUI(viewModel: ViewModel) {
                 eventos = listOf(
                     {
                         if (numeroTela!! != "0")
-                            viewModel.mudarNumero(validarZero(numeroTela, "0")) },
+                            viewModel.mudarNumero(validarZero(numeroTela, "0"))
+                    },
                     {
                         //numero = if (!numero.contains(",")) "$numero," else numero
+                        if (!numeroTela.contains(","))
+                            viewModel.onMudarOperacao(',')
+
                     },
                     { },
                     { viewModel.onCalcularOperacoesBasicas() }

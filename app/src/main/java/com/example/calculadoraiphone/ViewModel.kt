@@ -29,13 +29,12 @@ class ViewModel : ViewModel() {
     }
 
     fun mudarNumero(numero: String) {
-        if (operacao.value?.isWhitespace() == true) {
+        if (operacao.value?.isWhitespace() == true)
             numero1.value = numero
-            numeroTela.value = numero
-        } else {
+        else
             numero2.value = numero
-            numeroTela.value = numero
-        }
+
+        numeroTela.value = formatarNumeroTela(numero)
         textoBotaoLimpar.value = "C"
     }
 
@@ -44,12 +43,13 @@ class ViewModel : ViewModel() {
     }
 
     fun onCalcularOperacoesBasicas() {
-        resultado.value = useCases.operacoesBasicas(
-            numero1.value!!,
-            numero2.value!!,
-            operacao.value!!
-        ).toString()
-        numeroTela.value = resultado.value
+        numeroTela.value = formatarNumeroTela(
+            useCases.operacoesBasicas(
+                numero1.value!!,
+                numero2.value!!,
+                operacao.value!!
+            ).toString()
+        )
     }
 
 }

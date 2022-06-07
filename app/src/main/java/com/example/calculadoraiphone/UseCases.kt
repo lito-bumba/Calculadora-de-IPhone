@@ -16,10 +16,11 @@ class UseCases() {
 
     fun operacoesBasicas(numero1: String, numero2: String, operacao: Char): Double =
         when (operacao) {
-        '+' -> validarNumero(numero1) + validarNumero(numero2)
-        '-' -> validarNumero(numero1) - validarNumero(numero2)
-        '*' -> validarNumero(numero1) * validarNumero(numero2)
-        else -> validarNumero(numero1) / validarNumero(numero2)
-    }
+            '+' -> validarNumero(numero1) + validarNumero(numero2)
+            '-' -> validarNumero(numero1) - validarNumero(numero2)
+            '*' -> validarNumero(numero1) * validarNumero(numero2)
+            '/' -> validarNumero(numero1) / validarNumero(numero2)
+            else -> numero1.toDouble()
+        }
 
 }

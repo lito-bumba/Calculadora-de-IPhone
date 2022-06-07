@@ -30,22 +30,18 @@ fun verificarDecimal(num: Double): String {
     return texto
 }
 
-fun formatoNumero(numero: String): String {
-    var texto = numero.substring(numero.indexOf(".") + 1)
+fun formatarNumeroTela(numero: String): String {
+    var numeros = numero.substring(numero.indexOf(".") + 1)
     var decimal = false
 
-    texto.forEach {
+    numeros.forEach {
         if (it.toString().toInt() > 0)
             decimal = true
     }
 
-    if (decimal == true) {
-        texto = numero
-        texto = texto.replace('.', ',')
-    } else {
-        texto = numero
-        texto = texto.substring(0, texto.indexOf("."))
+    numeros = numero
+    return when (decimal) {
+        true -> numeros.replace('.', ',')
+        false -> numeros.substring(0, numeros.indexOf("."))
     }
-
-    return texto
 }
