@@ -1,10 +1,16 @@
 package com.example.calculadoraiphone
 
+fun validarDecimal(num: String): Double = when (num.contains(',')) {
+    true -> num.replace(',', '.').toDouble()
+    else -> num.toDouble()
+}
+
 fun validarZero(numeroExistente: String, numero: String): String {
+
     return verificarDecimal(
         when (numeroExistente) {
-            "0" -> numero
-            else -> "${numeroExistente}$numero"
+            "0" -> validarDecimal(numero)
+            else -> validarDecimal("${numeroExistente}$numero")
         }.toDouble()
     )
 }

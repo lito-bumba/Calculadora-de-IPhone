@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.selection.SelectionContainer
@@ -11,8 +13,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices.PIXEL_2
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +44,7 @@ class TelaVertical : ComponentActivity() {
             }*/
 
             TelaVerticalUI(viewModel = viewModel)
+            //telaDeTeste()
         }
     }
 }
@@ -46,41 +52,45 @@ class TelaVertical : ComponentActivity() {
 var i = 0
 
 @Composable
-fun telaDeTeste(viewModel: ViewModel) {
-    val numero by viewModel.numeroTela.observeAsState("0")
-
+fun telaDeTeste() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = numero, fontSize = 40.sp)
 
+        var numero by remember {
+            mutableStateOf("0")
+        }
+
+        var textoTamanho by remember {
+            mutableStateOf(100)
+        }
+
+        Text(
+            text = numero,
+            fontSize = textoTamanho.sp,
+            textAlign = TextAlign.End,
+            color = Preta,
+            fontWeight = FontWeight.Light,
+            modifier = Modifier.fillMaxWidth()
+        )
         Spacer(modifier = Modifier.height(100.dp))
         Button(onClick = {
-            viewModel.mudarNumero("10")
-            viewModel.onMudarOperacao('*')
-            viewModel.mudarNumero("5")
-            viewModel.onCalcularOperacoesBasicas()
-        }) { Text(text = "Inicial") }
 
-        Spacer(modifier = Modifier.height(100.dp))
-        Button(onClick = {
-            val op: List<Char> = listOf('-', '+', '*', '/')
-            viewModel.onMudarOperacao(op[i])
-            viewModel.onCalcularOperacoesBasicas()
-            if (i < 3) i++ else i = 0
-        }) { Text(text = "Mudar Operação") }
+            when(numero.length){
+                6 -> textoTamanho = 80
+                9 -> textoTamanho = 60
+                10 -> textoTamanho = 56
+                11 -> textoTamanho = 50
+            }
 
-        Spacer(modifier = Modifier.height(50.dp))
-        Row() {
-            Button(onClick = {
-                viewModel.onCalcularOperacoesBasicas()
-            }) { Text(text = "N 1") }
-            Spacer(modifier = Modifier.width(50.dp))
-            Button(onClick = {
-                viewModel.onCalcularOperacoesBasicas()
-            }) { Text(text = "N 2") }
+            if (numero == "0")
+                numero = "2"
+            else
+                numero = numero + "2"
+        }) {
+            Text("Número")
         }
     }
 }
@@ -95,42 +105,55 @@ fun TelaVerticalUI(viewModel: ViewModel) {
         verticalArrangement = Arrangement.Bottom
     ) {
 
-        val numeroTela by viewModel.numeroTela.observeAsState("0")
         val textoBotaoLimpar by viewModel.textoBotaoLimpar.observeAsState("AC")
+        val numeroTela by viewModel.numeroTela.observeAsState("0")
+
+        val corFundoOperacao by viewModel.corFundoOperacao.observeAsState(Laranja)
+        val corTextoOperacao by viewModel.corTextoOperacao.observeAsState(Branca)
+        val operacao by viewModel.operacao.observeAsState(' ')
+        val tamanhoTexto by viewModel.tamanhoTexto.observeAsState(100)
 
         SelectionContainer(
             modifier = Modifier
-                .fillMaxHeight(0.18f)
-                .fillMaxWidth()
-                .padding(end = 25.dp)
+                .height(110.dp)
+                .fillMaxWidth(.83f)
         ) {
-            Text(
-                text = numeroTela,
-                fontSize = 100.sp,
-                fontFamily = FontFamily.Monospace,
-                textAlign = TextAlign.End,
-                color = Branca,
-                letterSpacing = 0.sp
-            )
+            Crossfade(
+                targetState = numeroTela,
+                animationSpec = tween(300)
+            ) {
+                Text(
+                    text = it,
+                    fontSize = tamanhoTexto.sp,
+                    textAlign = TextAlign.End,
+                    color = Branca,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
         }
+        Spacer(modifier = Modifier.height(15.dp))
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.92f)
+                .fillMaxHeight(.85f)
         ) {
 
             /*Linha 1*/
+
             Linha(
                 caracteres = listOf(textoBotaoLimpar, "+/-", "%", "/"),
-                coresFundo = listOf(Cinza, Laranja),
-                coresTexto = listOf(Preta, Branca),
+                coresFundo = listOf(Cinza, if (operacao == '/') corFundoOperacao else Laranja),
+                coresTexto = listOf(Preta, if (operacao == '/') corTextoOperacao else Branca),
+                negrito = listOf(FontWeight.Normal, FontWeight.Medium),
                 eventos = listOf(
                     { viewModel.onLimparDados() },
-                    { },
-                    { },
+                    { viewModel.maisMenos(numeroTela) },
+                    { viewModel.porcentagem(numeroTela) },
                     {
                         viewModel.onMudarOperacao('/')
                         viewModel.onLimparNumeroTela()
@@ -141,8 +164,11 @@ fun TelaVerticalUI(viewModel: ViewModel) {
             /*Linha 2*/
             Linha(
                 caracteres = listOf("7", "8", "9", "x"),
-                coresFundo = listOf(PretaFusca, Laranja),
-                coresTexto = listOf(Branca, Branca),
+                coresFundo = listOf(
+                    PretaFusca,
+                    if (operacao == '*') corFundoOperacao else Laranja
+                ),
+                coresTexto = listOf(Branca, if (operacao == '*') corTextoOperacao else Branca),
                 eventos = listOf(
                     { viewModel.mudarNumero(validarZero(numeroTela, "7")) },
                     { viewModel.mudarNumero(validarZero(numeroTela, "8")) },
@@ -157,7 +183,11 @@ fun TelaVerticalUI(viewModel: ViewModel) {
             /*Linha 3*/
             Linha(
                 caracteres = listOf("4", "5", "6", "-"),
-                coresFundo = listOf(PretaFusca, Laranja),
+                coresFundo = listOf(
+                    PretaFusca,
+                    if (operacao == '-') corFundoOperacao else Laranja
+                ),
+                coresTexto = listOf(Branca, if (operacao == '-') corTextoOperacao else Branca),
                 eventos = listOf(
                     { viewModel.mudarNumero(validarZero(numeroTela, "4")) },
                     { viewModel.mudarNumero(validarZero(numeroTela, "5")) },
@@ -168,9 +198,15 @@ fun TelaVerticalUI(viewModel: ViewModel) {
                     }
                 )
             )
-            Linha( /*Linha 4*/
+
+            /*Linha 4*/
+            Linha(
                 caracteres = listOf("1", "2", "3", "+"),
-                coresFundo = listOf(PretaFusca, Laranja),
+                coresFundo = listOf(
+                    PretaFusca,
+                    if (operacao == '+') corFundoOperacao else Laranja
+                ),
+                coresTexto = listOf(Branca, if (operacao == '+') corTextoOperacao else Branca),
                 eventos = listOf(
                     { viewModel.mudarNumero(validarZero(numeroTela, "1")) },
                     { viewModel.mudarNumero(validarZero(numeroTela, "2")) },
@@ -190,13 +226,7 @@ fun TelaVerticalUI(viewModel: ViewModel) {
                         if (numeroTela!! != "0")
                             viewModel.mudarNumero(validarZero(numeroTela, "0"))
                     },
-                    {
-                        //numero = if (!numero.contains(",")) "$numero," else numero
-                        if (!numeroTela.contains(","))
-                            viewModel.onMudarOperacao(',')
-
-                    },
-                    { },
+                    { viewModel.inserirDecimal(numeroTela) }, {},
                     { viewModel.onCalcularOperacoesBasicas() }
                 )
             )
@@ -210,7 +240,7 @@ fun TelaVerticalUI(viewModel: ViewModel) {
 )
 @Composable
 fun previzualizarLinha1() {
-    CalculadoraIPhoneTheme {
-
+    CalculadoraIPhoneTheme() {
+        telaDeTeste()
     }
 }

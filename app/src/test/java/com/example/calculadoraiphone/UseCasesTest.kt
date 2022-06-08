@@ -5,12 +5,12 @@ import org.junit.Test
 
 class UseCasesTest {
 
-    @Test
+    /*@Test
     fun `Validar Número, Virgula e Ponto`() {
         val numero = "32,4"
         val result =  UseCases().validarNumero(numero)
         assertThat(result).isEqualTo(32.4)
-    }
+    }*/
 
     @Test
     fun `Mais ou Menos`() {
