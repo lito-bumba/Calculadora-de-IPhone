@@ -5,12 +5,12 @@ import org.junit.Test
 
 class UseCasesTest {
 
-    /*@Test
+    @Test
     fun `Validar Número, Virgula e Ponto`() {
         val numero = "32,4"
-        val result =  UseCases().validarNumero(numero)
+        val result =  numero.validarDecimal()
         assertThat(result).isEqualTo(32.4)
-    }*/
+    }
 
     @Test
     fun `Mais ou Menos`() {
@@ -28,25 +28,29 @@ class UseCasesTest {
 
     @Test
     fun `Operações Básicas - Soma`() {
-        val result = UseCases().operacoesBasicas("30", "40", '+')
+        val dados = Dados("30", "40", '+')
+        val result = UseCases().operacoesBasicas(dados)
         assertThat(result).isEqualTo(70)
     }
 
     @Test
     fun `Operações Básicas - Subtração`() {
-        val result = UseCases().operacoesBasicas("30", "40", '-')
+        val dados = Dados("30", "40", '-')
+        val result = UseCases().operacoesBasicas(dados)
         assertThat(result).isEqualTo(-10)
     }
 
     @Test
     fun `Operações Básicas - Multiplicação`() {
-        val result = UseCases().operacoesBasicas("30", "40", '*')
+        val dados = Dados("30", "40", '*')
+        val result = UseCases().operacoesBasicas(dados)
         assertThat(result).isEqualTo(1200)
     }
 
     @Test
     fun `Operações Básicas - Divisão`() {
-        val result = UseCases().operacoesBasicas("30", "40", '/')
+        val dados = Dados("30", "40", '/')
+        val result = UseCases().operacoesBasicas(dados)
         assertThat(result).isEqualTo(0.75)
     }
 

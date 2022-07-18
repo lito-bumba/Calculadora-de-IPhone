@@ -1,18 +1,18 @@
 package com.example.calculadoraiphone
 
-class UseCases() {
+class UseCases {
 
-    fun maisMenos(numero: String): Double = (validarDecimal(numero) * (-1))
+    fun maisMenos(numero: String): Double = (numero.validarDecimal().toDouble() * (-1))
 
-    fun porcentagem(numero: String): Double = (validarDecimal(numero) / 100)
+    fun porcentagem(numero: String): Double = (numero.validarDecimal().toDouble() / 100)
 
-    fun operacoesBasicas(numero1: String, numero2: String, operacao: Char): Double =
-        when (operacao) {
-            '+' -> validarDecimal(numero1) + validarDecimal(numero2)
-            '-' -> validarDecimal(numero1) - validarDecimal(numero2)
-            '*' -> validarDecimal(numero1) * validarDecimal(numero2)
-            '/' -> validarDecimal(numero1) / validarDecimal(numero2)
-            else -> numero1.toDouble()
+    fun operacoesBasicas(dados: Dados): Double =
+        when (dados.operacao) {
+            '+' -> dados.numero1.validarDecimal().toDouble() + dados.numero2.validarDecimal().toDouble()
+            '-' -> dados.numero1.validarDecimal().toDouble() - dados.numero2.validarDecimal().toDouble()
+            '*' -> dados.numero1.validarDecimal().toDouble() * dados.numero2.validarDecimal().toDouble()
+            '/' -> dados.numero1.validarDecimal().toDouble() / dados.numero2.validarDecimal().toDouble()
+            else -> dados.numero1.toDouble()
         }
 
 }

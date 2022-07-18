@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml",
+            "outputFile": "C:\\Users\\Lito Bumba\\Documents\\GitHub\\Calculadora-de-IPhone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hi\\values-hi.xml",
             "map": [
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/40596c2d2b5fa255911f04f2d5796cb9/transformed/material-1.5.0/res/values-hi/values-hi.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\40596c2d2b5fa255911f04f2d5796cb9\\transformed\\material-1.5.0\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/a236070fc91ec758564c458be3b860df/transformed/appcompat-1.4.1/res/values-hi/values-hi.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\a236070fc91ec758564c458be3b860df\\transformed\\appcompat-1.4.1\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/13e62fa75486cfdded73648db5499079/transformed/ui-1.0.1/res/values-hi/values-hi.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\13e62fa75486cfdded73648db5499079\\transformed\\ui-1.0.1\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
@@ -57,7 +57,7 @@
                     }
                 },
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/b890365b79f9f81aee8aa23874d8571b/transformed/core-1.7.0/res/values-hi/values-hi.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\b890365b79f9f81aee8aa23874d8571b\\transformed\\core-1.7.0\\res\\values-hi\\values-hi.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

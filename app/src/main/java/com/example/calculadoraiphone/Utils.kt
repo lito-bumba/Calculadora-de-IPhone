@@ -1,51 +1,51 @@
 package com.example.calculadoraiphone
 
-fun validarDecimal(num: String): Double = when (num.contains(',')) {
-    true -> num.replace(',', '.').toDouble()
-    else -> num.toDouble()
+fun String.validarDecimal(): String = when (this.contains(',')) {
+    true -> this.replace(',', '.')
+    else -> this
 }
 
 fun validarZero(numeroExistente: String, numero: String): String {
-
-    return verificarDecimal(
-        when (numeroExistente) {
-            "0" -> validarDecimal(numero)
-            else -> validarDecimal("${numeroExistente}$numero")
-        }.toDouble()
-    )
+    return when (numeroExistente) {
+        "0" -> numero.validarDecimal()
+        else -> "${numeroExistente}$numero".validarDecimal()
+    }.verificarDecimal()
 }
 
-fun verificarDecimal(num: Double): String {
+fun String.verificarDecimal(): String {
     var decimal = false
-    var texto = num.toString()
-    texto = texto.substring(texto.indexOf(".") + 1)
+    var texto = this.substring(this.indexOf(".") + 1)
+
+    if (this.contains('E') || this.contains('e'))
+        return this
 
     texto.forEach {
         if (it.toString().toInt() > 0)
             decimal = true
     }
 
-    if (decimal == true) {
-        texto = num.toString()
+    texto = this
+    if (decimal)
         texto = texto.replace('.', ',')
-    } else {
-        texto = num.toString()
+    else
         texto = texto.substring(0, texto.indexOf("."))
-    }
 
     return texto
 }
 
-fun formatarNumeroTela(numero: String): String {
-    var numeros = numero.substring(numero.indexOf(".") + 1)
+fun String.formatarNumeroTela(): String {
+    var numeros = this.substring(this.indexOf(".") + 1)
     var decimal = false
+
+    if (this.contains('E'))
+        return this.replace('.', ',')
 
     numeros.forEach {
         if (it.toString().toInt() > 0)
             decimal = true
     }
 
-    numeros = numero
+    numeros = this
     return when (decimal) {
         true -> numeros.replace('.', ',')
         false -> numeros.substring(0, numeros.indexOf("."))

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "C:\\Users\\Lito Bumba\\Documents\\GitHub\\Calculadora-de-IPhone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v21\\values-watch-v21.xml",
             "map": [
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/a236070fc91ec758564c458be3b860df/transformed/appcompat-1.4.1/res/values-watch-v21/values-watch-v21.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\a236070fc91ec758564c458be3b860df\\transformed\\appcompat-1.4.1\\res\\values-watch-v21\\values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

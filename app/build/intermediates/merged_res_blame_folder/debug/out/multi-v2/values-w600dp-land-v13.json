@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "outputFile": "C:\\Users\\Lito Bumba\\Documents\\GitHub\\Calculadora-de-IPhone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/40596c2d2b5fa255911f04f2d5796cb9/transformed/material-1.5.0/res/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\40596c2d2b5fa255911f04f2d5796cb9\\transformed\\material-1.5.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

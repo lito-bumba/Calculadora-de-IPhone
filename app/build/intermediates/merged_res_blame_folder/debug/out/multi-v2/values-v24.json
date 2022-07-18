@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/lito-bumba/Documentos/GitHub/Calculadora-de-IPhone/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "C:\\Users\\Lito Bumba\\Documents\\GitHub\\Calculadora-de-IPhone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/a236070fc91ec758564c458be3b860df/transformed/appcompat-1.4.1/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\a236070fc91ec758564c458be3b860df\\transformed\\appcompat-1.4.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/lito-bumba/.gradle/caches/transforms-3/40596c2d2b5fa255911f04f2d5796cb9/transformed/material-1.5.0/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\Lito Bumba\\.gradle\\caches\\transforms-3\\40596c2d2b5fa255911f04f2d5796cb9\\transformed\\material-1.5.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
